@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/flappyBack.png" type="Texture" id=1]
+[ext_resource path="res://src/box.png" type="Texture" id=2]
+[ext_resource path="res://src/FFFFORWA.TTF" type="DynamicFontData" id=3]
+[ext_resource path="res://src/Control.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 3 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 10, 10 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="box" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 192, 320 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuButton" type="MenuButton" parent="CanvasLayer/Control"]
+margin_left = 136.0
+margin_top = 264.0
+margin_right = 248.0
+margin_bottom = 376.0
+custom_fonts/font = SubResource( 1 )
+text = "Play"
+[connection signal="pressed" from="CanvasLayer/Control/MenuButton" to="CanvasLayer/Control" method="_on_MenuButton_pressed"]

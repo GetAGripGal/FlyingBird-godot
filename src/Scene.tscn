@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/Player/Bird.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/flappyBack.png" type="Texture" id=2]
+[ext_resource path="res://src/Scene.gd" type="Script" id=3]
+[ext_resource path="res://src/Flappy-Back2.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 544 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 192, 10 )
+
+[node name="Scene" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -3
+
+[node name="flappyBack" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 188, 328 )
+scale = Vector2( 9.89474, 10 )
+texture = ExtResource( 2 )
+
+[node name="Flappy-Back2" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 191, 360 )
+scale = Vector2( 10.0526, 10 )
+texture = ExtResource( 4 )
+
+[node name="Bird" parent="." instance=ExtResource( 1 )]
+position = Vector2( 192, 320 )
+scale = Vector2( 2, 2 )
+
+[node name="Border" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border"]
+position = Vector2( -96, 352 )
+shape = SubResource( 1 )
+
+[node name="Layout" type="Node2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="AreaDetect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDetect"]
+position = Vector2( 192, 656 )
+shape = SubResource( 3 )
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
