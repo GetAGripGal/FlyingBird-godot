@@ -20,23 +20,40 @@ func _ready():
 	Menu.hide()
 
 func _physics_process(_delta):
-	MoveMent(_delta)
+	motion.y += gravity
+	#MoveMent(_delta)
 	logic()
+	motion = move_and_slide(motion)
+	
 
 func _process(_delta):
 	ScoreMenu.text = str(score)
 	ScoreMenuLabel.text = "Score: " + str(score)
 
-func MoveMent(_delta):
-	motion.y += gravity
-	
-	if canMove:
-		if Input.is_action_just_pressed("Tap"):
+func _input(event):
+	if event is InputEventScreenTouch and event.pressed:
+		if canMove:
 			motion.y = 0
 			motion.y -= 425
 			canMove = false
 			Timer.start()
-
+	elif event is InputEventMouseButton and event.pressed:
+		if canMove:
+			motion.y = 0
+			motion.y -= 425
+			canMove = false
+			Timer.start()
+#
+#func MoveMent(_delta):
+#	motion.y += gravity
+#	
+#	if canMove:
+#		if Input.is_action_just_pressed("Tap"):
+#			motion.y = 0
+#			motion.y -= 425
+#			canMove = false
+#			Timer.start()
+#
 	motion = move_and_slide(motion)
 
 func logic():

@@ -1,0 +1,2 @@
+﻿41265
+/run/media/com/eef95668-7438-4f7a-bf0f-9f66f56e0459/Apps/Godot_v3.2.1-stable_mono_x11_64/Godot_v3.2.1-stable_mono_x11.64
